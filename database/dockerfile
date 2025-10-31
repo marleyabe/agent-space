@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16  # Imagem oficial do Postgres
+    container_name: my-postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: myapp
+    ports:
+      - "5432:5432"  # Mapeia a porta 5432 do host para a 5432 do container
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest  # Imagem oficial do Redis
+    container_name: my-redis
+    ports:
+      - "6379:6379"  # Mapeia a porta 6379 do host para a 6379 do container
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata:
+  redisdata:
